@@ -14,7 +14,7 @@ export default defineComponent({
 
 <template>
   <Cabecalho />
-    <router-view></router-view>
+  <router-view></router-view>
   <Rodape />
 </template>
 
