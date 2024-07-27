@@ -1,0 +1,33 @@
+:root {
+  --gradiente-boreal: linear-gradient(
+    180deg,
+    #304968 0%,
+    #36c1a0 52.6%,
+    #4650bd 100%
+  );
+  --verde-primario: #008364;
+  --verde-secundario: #304968;
+  --verde-terciario: #36c1a0;
+  --roxo-boreal: #4650bd;
+  --roxo-boreal-hover: #606ada;
+  --lilas: #b6bcff;
+  --azul-claro: #c8deef;
+  --branco: #fff;
+  --cinza: #444444;
+
+  --fonte-titulo: "Calistoga", serif;
+  --fonte-texto: "Raleway", sans-serif;
+}
+
+* {
+  border: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  color: var(--branco);
+  height: 100vh;
+}
