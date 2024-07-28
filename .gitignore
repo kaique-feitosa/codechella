@@ -35,3 +35,5 @@ temp/
 
 # Arquivos de sistema
 Thumbs.db
+
+.gitattributes
