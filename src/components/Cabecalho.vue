@@ -108,9 +108,17 @@ export default defineComponent({
 .link {
   color: var(--branco);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 40px;
+  opacity: 70%;
   text-decoration: none;
+  transition: 0.6s ease;
+}
+
+.router-link-active {
+  font-weight: 700;
+  opacity: 100%;
+  transition: 0.6s ease;
 }
 
 .menu-suspenso__link {
