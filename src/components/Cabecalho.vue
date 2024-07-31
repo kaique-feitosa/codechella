@@ -115,7 +115,8 @@ export default defineComponent({
   transition: 0.6s ease;
 }
 
-.router-link-active {
+.router-link-active,
+.link:hover {
   font-weight: 700;
   opacity: 100%;
   transition: 0.6s ease;

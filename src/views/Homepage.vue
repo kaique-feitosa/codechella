@@ -15,8 +15,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <Banner page="homepage" />
   <main>
+    <Banner page="homepage" />
     <Sobre />
     <LineUp />
     <div class="banner-rodape"></div>

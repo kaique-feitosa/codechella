@@ -10,10 +10,14 @@ export default defineComponent({
   setup() {
     const nome = localStorage.getItem("nome") || "";
     const tipoIngresso = localStorage.getItem("tipoIngresso") || "";
+    const setorIngresso = localStorage.getItem("setorIngresso") || "";
+    const diaEvento = localStorage.getItem("diaEvento") || "";
 
     return {
       nome,
       tipoIngresso,
+      setorIngresso,
+      diaEvento,
     };
   },
 });
@@ -48,9 +52,9 @@ export default defineComponent({
           />
           <div class="conteudo">
             <h6 class="nome">{{ nome }}</h6>
-            <span>Ingresso por QR Code</span>
             <span>{{ tipoIngresso }}</span>
-            <span>Data: 11/03</span>
+            <span>{{ setorIngresso }}</span>
+            <span>Data: {{ diaEvento }}</span>
             <span>Local: São Paulo-SP</span>
           </div>
         </div>

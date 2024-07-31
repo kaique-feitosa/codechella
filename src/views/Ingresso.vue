@@ -13,12 +13,16 @@ export default defineComponent({
     const nome = ref("");
     const email = ref("");
     const tipoIngresso = ref("");
+    const setorIngresso = ref("");
     const data = ref("");
+    const diaEvento = ref("");
     const erros = ref({
       nome: "",
       email: "",
       tipoIngresso: "",
+      setorIngresso: "",
       data: "",
+      diaEvento: "",
     });
 
     const validarFormulario = () => {
@@ -51,6 +55,23 @@ export default defineComponent({
         erros.value.tipoIngresso = "";
       }
 
+      if (
+        setorIngresso.value === "" ||
+        setorIngresso.value === "Setor do ingresso"
+      ) {
+        erros.value.setorIngresso = "Selecione um setor do ingresso.";
+        valido = false;
+      } else {
+        erros.value.setorIngresso = "";
+      }
+
+      if (diaEvento.value === "" || diaEvento.value === "Dia do evento") {
+        erros.value.diaEvento = "Selecione um dia do evento.";
+        valido = false;
+      } else {
+        erros.value.diaEvento = "";
+      }
+
       if (!data.value) {
         erros.value.data = "Data de nascimento é obrigatória";
         valido = false;
@@ -64,8 +85,10 @@ export default defineComponent({
     const aoEnviar = (evento: Event) => {
       evento.preventDefault();
       if (validarFormulario()) {
-        localStorage.setItem('nome', nome.value)
-        localStorage.setItem('tipoIngresso', tipoIngresso.value)
+        localStorage.setItem("nome", nome.value);
+        localStorage.setItem("tipoIngresso", tipoIngresso.value);
+        localStorage.setItem("diaEvento", diaEvento.value);
+        localStorage.setItem("setorIngresso", setorIngresso.value);
         router.push("/ingresso-comprado");
       }
     };
@@ -74,7 +97,9 @@ export default defineComponent({
       nome,
       email,
       tipoIngresso,
+      setorIngresso,
       data,
+      diaEvento,
       erros,
       aoEnviar,
     };
@@ -115,24 +140,6 @@ export default defineComponent({
           />
           <span class="erro" v-if="erros.email">{{ erros.email }}</span>
         </div>
-        <div class="container-input tipo-ingresso">
-          <label for="tipo-ingresso">Tipo de ingresso</label>
-          <select
-            name="tipo-ingresso"
-            id="tipo-ingresso"
-            v-model="tipoIngresso"
-            required
-          >
-            <option value="" disabled selected>Tipo de ingresso</option>
-            <option value="Pista Premium">Pista Premium</option>
-            <option value="Pista Comum">Pista Comum</option>
-            <option value="Cadeiras Terreo">Cadeiras Térreo</option>
-            <option value="Cadeiras Superiores">Cadeiras Superiores</option>
-          </select>
-          <span class="erro" v-if="erros.tipoIngresso">{{
-            erros.tipoIngresso
-          }}</span>
-        </div>
         <div class="container-input data">
           <label for="data">Data de Nascimento:</label>
           <input
@@ -144,6 +151,54 @@ export default defineComponent({
             required
           />
           <span class="erro" v-if="erros.data">{{ erros.data }}</span>
+        </div>
+        <div class="container-input tipo-ingresso">
+          <label for="tipo-ingresso">Tipo de ingresso:</label>
+          <select
+            name="tipo-ingresso"
+            id="tipo-ingresso"
+            required
+            v-model="tipoIngresso"
+          >
+            <option value="" selected disabled>Tipo de ingresso</option>
+            <option value="Entrada inteira">Entrada inteira</option>
+            <option value="Meia-entrada">Meia-entrada</option>
+          </select>
+          <span class="erro" v-if="erros.tipoIngresso">{{
+            erros.tipoIngresso
+          }}</span>
+        </div>
+        <div class="container-input setor-ingresso">
+          <label for="setor-ingresso">Setor do ingresso:</label>
+          <select
+            name="setor-ingresso"
+            id="setor-ingresso"
+            v-model="setorIngresso"
+            required
+          >
+            <option value="" disabled selected>Setor do ingresso</option>
+            <option value="Pista Premium">Pista Premium</option>
+            <option value="Pista Comum">Pista Comum</option>
+            <option value="Cadeiras Térreo">Cadeiras Térreo</option>
+            <option value="Cadeiras Superiores">Cadeiras Superiores</option>
+          </select>
+          <span class="erro" v-if="erros.setorIngresso">{{
+            erros.setorIngresso
+          }}</span>
+        </div>
+        <div class="container-input dia-evento">
+          <label for="dia-evento">Dia do evento:</label>
+          <select
+            name="dia-evento"
+            id="dia-evento"
+            required
+            v-model="diaEvento"
+          >
+            <option value="" disabled selected>Dia do evento</option>
+            <option value="11/03">11/03</option>
+            <option value="12/03">12/03</option>
+          </select>
+          <span class="erro" v-if="erros.diaEvento">{{ erros.diaEvento }}</span>
         </div>
 
         <button type="submit" class="botao">
@@ -231,10 +286,6 @@ export default defineComponent({
     font-size: 3rem;
     line-height: 62.4px;
   }
-
-  #data {
-    width: 70%;
-  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -246,8 +297,9 @@ export default defineComponent({
     display: grid;
     grid-template-areas:
       "nome nome"
-      "email email"
-      "ingresso data"
+      "email data"
+      "tipo setor"
+      "dia dia"
       "botao botao";
     column-gap: 1.5rem;
     row-gap: 2rem;
@@ -262,15 +314,19 @@ export default defineComponent({
   }
 
   .tipo-ingresso {
-    grid-area: ingresso;
+    grid-area: tipo;
+  }
+
+  .setor-ingresso {
+    grid-area: setor;
   }
 
   .data {
     grid-area: data;
   }
 
-  #data {
-    width: 100%;
+  .dia-evento {
+    grid-area: dia;
   }
 
   .botao {
