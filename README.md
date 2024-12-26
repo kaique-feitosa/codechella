@@ -19,5 +19,4 @@ O Challenge simula um ambiente de produção com desafios semanais, onde é util
 |----------------------|---------------------------------------------------------------------------------------------------------------|
 | Tecnologias utilizadas| Vite, Vue.js, vuex, vue-router, TypeScript, Bootstrap |
 | URL da Aplicação     | **[CodeChella](https://codechella-xi.vercel.app/)**                                                                                                 |
-| Design do Desafio    | **[Figma](https://www.figma.com/design/xHLPBeA2ujaXbBjHMK9xh7/CodeChella-%7C-Challenge-I---Front-end-2023?node-id=48-205&t=dsQ8kShImkSRpdzv-0)** |
 
